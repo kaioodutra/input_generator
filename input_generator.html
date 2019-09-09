@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Input Generator - 1.0</title>
+</head>
+
+<body>
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="border rounded">
+          <h3 class="text-sm-center">Input Generator - 1.0</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 m-sm-auto">
+        <div class="input-group">
+          <input id="limit" type="number" class="form-control" placeholder="limit" value="3" step="1" min="1" max="255"
+            required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="generator">generate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row" id="inputs">
+      <!-- generated inputs -->
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var inputs = document.getElementById("inputs");                                                 //Get the id where the entries will be 
+      var generator = document.getElementById("generator");                                           //Get the id of the input generator button                                                                 
+
+      x = 0;                                                                                          //Input counter          
+      $(generator).click(function (e) {                                                               //Generator button function
+        var limit = document.getElementById("limit").value;                                           //Sets input limit     
+        e.preventDefault();
+        if (x < limit) {                                                                              //Condition for generating entries
+          x++;                                                                                        //Add 1 to each input 
+          //below, add content inside (generated inputs)                        
+          $(inputs).append('<div id="DivInput'+x+'" class="col-md-6 mt-3"> <div class="input-group"><input type="text" name="Input'+x+'" id="input'+x+'" class="form-control" placeholder="input '+x+'"><div class="input-group-append"><button class="btn btn-outline-secondary delete">x</button></div> </div></div>');
+        }
+      });
+
+      $(inputs).on("click", ".delete", function (e) {                                                 //Input Deletion Function  
+        var remov = this.parentNode.parentNode.parentNode.id;                                         //Get the id of the clicked input            
+        if (remov == ("DivInput" + x)) {                                                              //Deletes only last input
+          e.preventDefault(); $(this).parent('div').parent('div').parent('div').remove(); x--;        //Function that removes the div containing the input
+        }
+      })
+    });                                                                                                                               
+  </script>
+
+</body>
+
+</html>
