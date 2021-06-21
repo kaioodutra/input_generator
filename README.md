@@ -8,4 +8,4 @@ is only a form of the "leave beautiful and responsive".
 Any help and contribuiton is welcome!
 
 Live Preview
-https://kaiodutra.com/input_generator/
+https://kaiodutra.com/input_generator/input_generator.html
